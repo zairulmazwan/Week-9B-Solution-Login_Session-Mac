@@ -1,0 +1,32 @@
+﻿@page
+@model Login_Session.Pages.Users.ViewModel
+@{
+}
+
+
+<h1>:: User List Page ::</h1>
+
+<br />
+<div class="row">
+
+<div class="col-md-7">
+   <table class="table">
+       <thead>
+           <tr>
+               <th>@Html.DisplayNameFor(model => model.User[0].FirstName)</th>
+               <th>@Html.DisplayNameFor(model => model.User[0].UserName)</th>
+               <th>@Html.DisplayNameFor(model => model.User[0].Role)</th>
+           </tr>
+       </thead>
+
+       @foreach(var item in Model.User)
+       {
+           <tr>
+               <td>@item.FirstName</td>
+               <td>@item.UserName</td>
+               <td>@item.Role</td>
+           </tr>
+       }
+   </table>
+</div>
+</div>

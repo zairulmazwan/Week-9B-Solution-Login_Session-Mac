@@ -9,7 +9,7 @@ namespace Login_Session.Pages.DatabaseConnection
     {
         public string DatabaseString ()
         {
-            string DbString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\zairu\source\repos\Login_Session\Login_Session\Data\Login_Session.mdf;Integrated Security=True;Connect Timeout=30";
+            string DbString = "/Users/zairulmazwan/Projects/Login_Session---Tutorial/Login_Session/Data/LoginSession.db";
             return DbString;
         }
     }

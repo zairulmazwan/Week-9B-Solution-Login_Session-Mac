@@ -7,6 +7,7 @@ using Login_Session.Models;
 using Login_Session.Pages.DatabaseConnection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.Sqlite;
 
 namespace Login_Session.Pages.Users
 {
@@ -22,20 +23,24 @@ namespace Login_Session.Pages.Users
 
         public IActionResult OnPost()
         {
-            DatabaseConnect dbstring = new DatabaseConnect(); //creating an object from the class
-            string DbConnection = dbstring.DatabaseString(); //calling the method from the class
-            Console.WriteLine(DbConnection);
-            SqlConnection conn = new SqlConnection(DbConnection);
-            conn.Open();
+            var connectionStringBuilder = new SqliteConnectionStringBuilder();
+            DatabaseConnect DBCon = new DatabaseConnect(); // your own class and method in DatabaseConnection folder
+            string dbStringConnection = DBCon.DatabaseString();
+
+            connectionStringBuilder.DataSource = dbStringConnection;
+            var connection = new SqliteConnection(connectionStringBuilder.ConnectionString);
+
+            connection.Open();
+
+            var command = connection.CreateCommand();
 
             Console.WriteLine(User.FirstName);
             Console.WriteLine(User.UserName);
             Console.WriteLine(User.Password);
             Console.WriteLine(User.Role);
 
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = conn;
+           
+                
                 command.CommandText = @"INSERT INTO UserTable (FirstName, UserName, UserPassword, UserRole) VALUES (@FName, @UName, @Pwd, @Role)";
 
                 command.Parameters.AddWithValue("@FName",User.FirstName);
@@ -43,7 +48,7 @@ namespace Login_Session.Pages.Users
                 command.Parameters.AddWithValue("@Pwd", User.Password);
                 command.Parameters.AddWithValue("@Role", User.Role);
                 command.ExecuteNonQuery();
-            }
+            
 
             return RedirectToPage("/Index");
         }
