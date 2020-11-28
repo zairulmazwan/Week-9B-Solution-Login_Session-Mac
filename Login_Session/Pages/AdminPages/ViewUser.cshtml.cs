@@ -35,6 +35,11 @@ namespace Login_Session.Pages.AdminPages
             FirstName = HttpContext.Session.GetString(SessionKeyName2);
             SessionID = HttpContext.Session.GetString(SessionKeyName3);
 
+            if (string.IsNullOrEmpty(UserName)&& string.IsNullOrEmpty(FirstName)&&string.IsNullOrEmpty(SessionID))
+            {
+                return RedirectToPage("/Login/Login");
+            }
+
             DatabaseConnect dbConn = new DatabaseConnect();
             string DbString = dbConn.DatabaseString();
 
