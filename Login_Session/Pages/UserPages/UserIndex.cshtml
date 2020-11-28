@@ -1,0 +1,22 @@
+﻿@page
+@model Login_Session.Pages.UserPages.UserIndexModel
+@{
+}
+
+
+<h1>:: User Main Page ::</h1>
+<br />
+<h2> Welcome @Model.FirstName</h2>
+
+<br />
+<div class="row">
+
+    <div class="col-sm-2">
+        <p><a asp-page="/UserPages/ViewProfile">User Profile Page</a></p>
+    </div>
+
+    <div class="col-sm-2">
+        <p><a asp-page="/Logout/Logout">Logout</a></p>
+    </div>
+
+</div>

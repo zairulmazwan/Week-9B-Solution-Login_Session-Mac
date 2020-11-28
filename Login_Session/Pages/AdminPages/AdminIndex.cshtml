@@ -1,0 +1,26 @@
+﻿@page
+@model Login_Session.Pages.AdminPages.AdminIndexModel
+@{
+}
+
+<h1>:: Admin Page ::</h1>
+<br />
+
+<h2>Welcome @Model.FirstName</h2>
+
+<br />
+<div class="row">
+
+    <div class="col-sm-2">
+        <p><a asp-page="/Users/Create">Create User</a></p>
+    </div>
+
+    <div class="col-sm-2">
+        <p><a asp-page="/AdminPages/ViewUser">View User</a></p>
+    </div>
+
+    <div class="col-sm-2">
+        <p><a asp-page="/Logout/Logout">Logout</a></p>
+    </div>
+
+</div>

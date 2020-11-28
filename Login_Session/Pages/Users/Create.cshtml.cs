@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Login_Session.Models;
 using Login_Session.Pages.DatabaseConnection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.Sqlite;
@@ -17,8 +18,23 @@ namespace Login_Session.Pages.Users
         public User User { get; set; }
 
         public List<string> URole { get; set; } = new List<string> { "User", "Admin" };
+
+        public string UserName;
+        public const string SessionKeyName1 = "username";
+
+
+        public string FirstName;
+        public const string SessionKeyName2 = "fname";
+
+        public string SessionID;
+        public const string SessionKeyName3 = "sessionID";
+
         public void OnGet()
         {
+            //get the session first!
+            UserName = HttpContext.Session.GetString(SessionKeyName1);
+            FirstName = HttpContext.Session.GetString(SessionKeyName2);
+            SessionID = HttpContext.Session.GetString(SessionKeyName3);
         }
 
         public IActionResult OnPost()
@@ -50,7 +66,7 @@ namespace Login_Session.Pages.Users
                 command.ExecuteNonQuery();
             
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("/AdminPages/AdminIndex");
         }
     }
 }

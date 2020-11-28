@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Login\" />
+    <Folder Include="Pages\UserPages\" />
+    <Folder Include="Pages\AdminPages\" />
+    <Folder Include="Pages\Logout\" />
+  </ItemGroup>
 </Project>
